@@ -1,0 +1,812 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="CoSMaster.master.cs" Inherits="CMS_Sampada.CoS.CoSMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sampada CMS</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../dist/plugins/fontawesome-free/css/all.min.css">
+
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="../dist/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="../dist/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="../dist/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="../dist/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="../dist/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="../dist/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="../dist/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="../dist/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="../dist/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="../dist/plugins/fullcalendar/main.css">
+    <link rel="stylesheet" href="../dist/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="../dist/css/Reader.css">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+
+<body class="hold-transition sidebar-mini layout-fixed  sidebar-collapse">
+
+    <form id="form1" runat="server" autocomplete="off">
+        <div>
+            <div class="wrapper">
+
+                <!-- Preloader -->
+                <%--  <div class="preloader flex-column justify-content-center align-items-center">
+                    <img class="animation__shake" src="../dist/img/logo.png" alt="AdminLTELogo" height="60" width="60">
+                </div>--%>
+
+                <!-- Navbar -->
+                <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+                    <!-- Left navbar links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                        </li>
+                        <li class="nav-item d-none d-sm-inline-block">
+                            <a href="https://sampada.mpigr.gov.in/department/#/admin/subRegistrarDashboard" class="nav-link">Home</a>
+                        </li>
+                    </ul>
+
+                    <!-- Right navbar links -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link p-1" data-toggle="dropdown" href="#">
+                                <div class="user-panel d-flex">
+                                    <div class="info">
+                                        <b class="d-block">Collector of Stamp - 
+                                        <asp:Label ID="lblCoSName" Text="" runat="server"></asp:Label>
+                                        </b>
+                                    </div>
+                                    <div class="image">
+                                        <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="padding: 0px 0 10px 0;">
+                                <span class="dropdown-item dropdown-header">
+                                    <div class="text-center" style="display: none">
+                                        <img class="profile-user-img img-fluid img-circle popupimg" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                                    </div>
+                                    <p class="profile-username text-center">
+                                        Collector of Stamp -<br>
+                                        <asp:Label ID="lblCoSNamePro" Text="" runat="server"></asp:Label>
+                                    </p>
+                                </span>
+                                <div class="dropdown-divider"></div>
+                                <a href="CoS_Profile" class="dropdown-item">
+                                    <i class="fas fa-user mr-2"></i>Profile
+                                </a>
+                                <div class="dropdown-divider"></div>
+
+                                <asp:LinkButton ID="lnkbtnLogout" class="dropdown-item" runat="server" OnClick="lnkbtnLogout_Click"> <i class="fas fa-sign-out-alt"></i> Logout</asp:LinkButton>
+                                <div class="dropdown-divider"></div>
+                                <%-- <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>--%>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+                <aside class="main-sidebar sidebar-dark-primary elevation-4">
+                    <a href="CoSHome" class="brand-link">
+                        <img src="../dist/img/logo.png" alt="Sampada CMS Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                        <span class="brand-text font-weight-light">Sampada CMS</span>
+                    </a>
+
+                    <div class="sidebar">
+                        <div class="form-inline">
+                            <div class="input-group" data-widget="sidebar-search">
+                                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-sidebar">
+                                        <i class="fas fa-search fa-fw"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <nav class="mt-2">
+                            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                                <li class="nav-item">
+                                    <a href="../Sampada_Dashboard" class="nav-link">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            Master Dashboard
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="CoSHome" class="nav-link active">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                        <p>
+                                            Dashboard
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="AcceptRejectCases" class="nav-link">
+                                        <i class="nav-icon fas fa-table"></i>
+                                        <p>
+                                            New Proposal
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="Cases_In_Hearing" class="nav-link">
+                                        <i class="nav-icon fas fa-calendar"></i>
+                                        <p>
+                                            Todays Hearing Cases
+                                        </p>
+                                    </a>
+
+                                </li>
+                                <li class="nav-item">
+                                    <a href="Ordersheet_Pending" class="nav-link">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Total Pending Cases
+                                        </p>
+                                    </a>
+                                </li>
+                               <%-- <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Total Registered Cases
+                                        </p>
+                                    </a>
+                                </li>--%>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-adjust"></i>
+                                        <p>
+                                            Total Ordered Cases
+                                        </p>
+                                    </a>
+
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="FinalOrder_PendingList" class="nav-link">
+                                        <i class="nav-icon fas fa-th"></i>
+                                        <p>
+                                            Pending Cases for Final Order
+                                        </p>
+                                    </a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-money-bill-alt"></i>
+                                        <p>
+                                            Early Hearing / Reply Cases
+                                        </p>
+                                    </a>
+
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="CasesTo_MoveRRC" class="nav-link">
+                                        <i class="nav-icon fas fa-file-export"></i>
+                                        <p>
+                                            Cases Moved to RRC
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="Payment_List" class="nav-link">
+                                        <i class="nav-icon fas fa-money-bill-alt"></i>
+                                        <p>
+                                            Cases Where Payment Done
+                                        </p>
+                                    </a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a href="Payment_List" class="nav-link">
+                                        <i class="nav-icon fas fa-calendar-times"></i>
+                                        <p>
+                                            Cases Where Payment Pending
+                                        </p>
+                                    </a>
+                                </li>
+                               <li class="nav-item">
+                                    <a href="CosTemplate" class="nav-link">
+                                        <i class="nav-icon fas fa-file-signature"></i>
+                                        <p>
+                                            Add Template
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="CasesForRRC_Certificate" class="nav-link">
+                                        <i class="nav-icon fas fa-award"></i>
+                                        <p>
+                                            RRC Certificate
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="ClosedCases_List" class="nav-link">
+                                        <i class="nav-icon fas fa-check-circle"></i>
+                                        <p>
+                                            Closed Cases
+                                        </p>
+                                    </a>
+                                </li>
+                               
+
+
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="nav-icon fas fa-table"></i>
+                                        <p>
+                                            Legacy Cases
+                                        </p>
+                                    </a>
+                                </li>
+                               
+
+                                <li class="nav-item">
+                                    <a href="MIS_Report" class="nav-link">
+                                        <i class="nav-icon fas fa-book"></i>
+                                        <p>
+                                            MIS Report
+                                        </p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+
+                <div class="content-wrapper">
+                    <%--        <div class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <h1 class="m-0">Dashboard</h1>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ol class="breadcrumb float-sm-right">
+                                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                        <li class="breadcrumb-item active">Dashboard</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>--%>
+
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+
+                <footer class="main-footer">
+                    <strong>Copyright &copy; <a href="#">MPSeDC</a>.</strong>
+                    All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+      </div>
+                </footer>
+
+                <aside class="control-sidebar control-sidebar-dark">
+                </aside>
+            </div>
+
+            <asp:HiddenField ID="hdnStatus" ClientIDMode="Static" runat="server" />
+        </div>
+    </form>
+
+
+    <script src="../dist/plugins/jquery/jquery.min.js"></script>
+    <script src="../dist/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="../dist/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../dist/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="../dist/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../dist/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="../dist/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="../dist/plugins/moment/moment.min.js"></script>
+    <script src="../dist/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="../dist/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="../dist/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="../dist/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="../dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="../dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="../dist/js/pages/dashboard.js"></script>
+    <script src="../dist/plugins/pdfmake/pdfmake.min.js"></script>
+    <script src="../dist/plugins/pdfmake/vfs_fonts.js"></script>
+    <script src="../dist/plugins/summernote/summernote-bs4.min.js"></script>
+    <script src="../dist/plugins/moment/moment.min.js"></script>
+    <script src="../dist/plugins/fullcalendar/main.js"></script>
+    <script src="../dist/js/slick.min.js"></script>
+    <%--  <script src="https://cdn.jsdelivr.net/gh/AmagiTech/JSLoader/amagiloader.js"></script>--%>
+    <script>
+
+
+        $('#DivHearing,#DivExecution').hide();
+
+        function check() {
+
+
+            if ($("#Send_Notice").prop("checked", true)) {
+                $('.divshow').show();
+                $('#DateDiv2').show();
+                $('#DateDiv1').hide();
+                $('#DivExecution').hide();
+                $('#DivHearing').Show();
+                $('#s_for_later').hide();
+
+            }
+        }
+
+        function check2() {
+            if ($("#save_for_Later").prop("checked", true)) {
+                $('.divshow').show();
+                $('#DateDiv1').show();
+                $('#DateDiv2').hide();
+                $('#DivHearing').hide();
+                $('#DivExecution').Show();
+                $('#s_for_later').Show();
+
+
+            }
+
+        }
+    </script>
+    <script>
+
+
+        $('#summernote,#summernote3,#report,#summernote,#txtSRProposal,#txtCOSDecision,#txtFinalDecision,#Textarea_2').summernote();
+
+        $(document).ready(function () {
+            $("#detail_card").attr("style", "display:none");
+            $('#viewbtn').on('click', function () {
+                $("#detail_card").attr("style", "display:block");
+            })
+
+
+        });
+
+        $('#fromdate').datetimepicker({
+            format: 'L'
+        });
+        $('#todate').datetimepicker({
+            format: 'L'
+        });
+
+        $('#HDate').datetimepicker({
+            format: 'L'
+        });
+
+        //$(function () {
+        //    $("#ContentPlaceHolder1_grdCaseList").DataTable({
+        //        "responsive": true, "lengthChange": false, "autoWidth": false,
+        //        "buttons": ["csv", "excel", "pdf", "print"]
+        //    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+        //});
+
+
+    </script>
+
+
+
+    <script>
+
+        $(function () {
+            function ini_events(ele) {
+                ele.each(function () {
+                    var eventObject = {
+                        title: $.trim($(this).text())
+                    }
+                    $(this).data('eventObject', eventObject)
+
+                    $(this).draggable({
+                        zIndex: 1070,
+                        revert: true,
+                        revertDuration: 0
+                    })
+                })
+            }
+
+            ini_events($('div.external-event'))
+
+
+            var date = new Date()
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear()
+
+            var Calendar = FullCalendar.Calendar;
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                themeSystem: 'bootstrap',
+
+                //events: [
+                //    {
+                //        title: 'All Day Event',
+                //        start: new Date(y, m, 1),
+                //        backgroundColor: '#f56954', //red
+                //        borderColor: '#f56954', //red
+                //        allDay: true
+                //    },
+                //    {
+                //        title: 'Long Event',
+                //        start: new Date(y, m, d - 5),
+                //        end: new Date(y, m, d - 2),
+                //        backgroundColor: '#f39c12', //yellow
+                //        borderColor: '#f39c12' //yellow
+                //    },
+                //    {
+                //        title: 'Meeting',
+                //        start: new Date(y, m, d, 10, 30),
+                //        allDay: false,
+                //        backgroundColor: '#0073b7', //Blue
+                //        borderColor: '#0073b7' //Blue
+                //    },
+                //    {
+                //        title: 'Lunch',
+                //        start: new Date(y, m, d, 12, 0),
+                //        end: new Date(y, m, d, 14, 0),
+                //        allDay: false,
+                //        backgroundColor: '#00c0ef', //Info (aqua)
+                //        borderColor: '#00c0ef' //Info (aqua)
+                //    },
+                //    {
+                //        title: 'Birthday Party',
+                //        start: new Date(y, m, d + 1, 19, 0),
+                //        end: new Date(y, m, d + 1, 22, 30),
+                //        allDay: false,
+                //        backgroundColor: '#00a65a', //Success (green)
+                //        borderColor: '#00a65a' //Success (green)
+                //    },
+                //    {
+                //        title: 'Click for Google',
+                //        start: new Date(y, m, 28),
+                //        end: new Date(y, m, 29),
+                //        url: 'https://www.google.com/',
+                //        backgroundColor: '#3c8dbc', //Primary (light-blue)
+                //        borderColor: '#3c8dbc' //Primary (light-blue)
+                //    }
+                //],
+                editable: true,
+                droppable: true,
+                drop: function (info) {
+                }
+            });
+
+            calendar.render();
+            // $('#calendar').fullCalendar()
+
+        })
+
+
+        $('#editproceeding,#pnl_Ordersheet').hide(); $('#ifselectyes').hide();
+        $('#ifselectyes1').hide();
+        $("#add_green_proceeding").click(function () {
+            $('.displaydiv').hide();
+            $("#add_green_proceeding").hide();
+            $('#editproceeding,#pnl_Ordersheet').show();
+        });
+
+        $("#Edit").click(function () {
+            $('.displaydiv').hide();
+            $("#add_green_proceeding").hide();
+            $('#editproceeding,#pnl_Ordersheet').show();
+        });
+
+        $("#edit_notice").click(function () {
+            //alert("aaaaa");
+            //$('.displaydiv').hide();
+            //$("#add_green_proceeding,#PnlHearing_P1").hide();
+            // $('#editproceeding,#pnl_Ordersheet').show();
+        });
+
+
+        $('#ifselectyes_Template').hide();
+
+        $('input:radio[name=customRadio]').click(function () {
+            if ($(this).attr('id') == 'yes') {
+                //debugger;
+                $('#ifselectyes').show();
+                //$('#ifselectyes1').show();
+                $('#ifselectyes_Template').hide();
+
+            }
+            else {
+                $('#ifselectyes').hide();
+                $('#ifselectyes1').hide();
+                //  $('#ifselectyes_Template').show();
+                document.getElementById('ifselectyes_Template').style.display = 'block';
+            }
+        });
+        $('input:radio[name=customRadio]').click(function () {
+            if ($(this).attr('id') == 'no') {
+                $('#ifselectyes_Template').show();
+                $('#ifselectyes').hide();
+            }
+            else {
+
+                /*$('#ifselectyes1,#addnewrow').hide();*/
+
+            }
+        });
+
+
+        $('input:radio[name=customRadio11]').click(function () {
+            if ($(this).attr('id') == 'yes11') {
+                $('#ifselectyes1').show();
+                $('#ifselectyes_Template,#addnewrow').hide();
+            }
+            else {
+                $('#ifselectyes1,#addnewrow').hide();
+                $('#ifselectyes_Template').show();
+
+            }
+        });
+
+        $('#addnewrow').hide();
+        $('#addrow').click(function () {
+            $('#addnewrow').show();
+        });
+
+        $('#newhearing').hide();
+        //$('#nexthearing').click(function () {
+        //    $('#hearing').hide();
+        //    $('#newhearing').show();
+        //});
+
+        //$('#hearingdate,#F_Notice').hide();
+        //$('#F_Notice').hide();
+
+        //$('input:radio[name=notice]').click(function () {
+        //    if ($(this).attr('id') == 'Send_Notice') {
+        //        $('#hearingdate').show();
+        //        $('#F_Notice').hide();
+        //    }
+        //    else {
+        //        $('#F_Notice').show();
+        //        $('#hearingdate').hide();
+        //    }
+        //});
+
+        $('#F_Notice').hide();
+
+
+        var status = document.getElementById('hdnStatus').value;
+
+        if (status == "SendFinalOrder_EsignPnl") {
+            document.getElementById('edit_notice').style.display = 'none';
+            $('#F_Notice').show();
+            $('.divshow').hide();
+            $('#ExecutionDt').hide();
+            $('#DivToday,#DivTodayDetails,#DivExecution').hide();
+
+        } else {
+
+            $('#F_Notice').hide();
+        }
+
+
+
+        $('input:radio[name=notice]').click(function () {
+            if ($(this).attr('id') == 'Send_Notice') {
+
+                $('.divshow,#DivHearing').show();
+                $('#F_Notice').hide();
+                $('#ExecutionDt').hide();
+                $('#DivToday,#DivTodayDetails,#DivExecution').hide();
+            }
+            else {
+                $('#F_Notice').show();
+                $('.divshow').hide();
+                $('#ExecutionDt').hide();
+                $('#DivToday,#DivTodayDetails,#DivExecution').hide();
+            }
+        });
+
+
+
+
+
+
+        $('#signature').hide();
+        $('#submit').click(function () {
+            // $('#hearing').hide();
+            $('#signature').show();
+        });
+
+        $('#next').hide();
+        $('#dsc').click(function () {
+            $('#next').show();
+        });
+
+        $('#for_today,#s_for_later,#DivTodayDetails').hide();
+        $('input:radio[name=oredr_date]').click(function () {
+            if ($(this).attr('id') == 'today') {
+                $('#for_today,#DivToday,#DivTodayDetails').show();
+                $('#s_for_later,.divshow,#DivExecution,#DivHearing,#ExecutionDt').hide();
+            }
+            else {
+                $('#for_today,#DivHearing,#DivToday,#DivTodayDetails').hide();
+                $('#s_for_later,#ExecutionDt,#DivExecution').show();
+
+
+            }
+        });
+
+
+
+        function select_all(ele, byname) {
+            /* var checkboxes = document.getElementsByTagName('input');*/
+            var checkboxes = document.getElementsByName(byname);
+            if (ele.checked) {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = true;
+                    }
+                }
+            } else {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    console.log(i)
+                    if (checkboxes[i].type == 'checkbox') {
+                        checkboxes[i].checked = false;
+                    }
+                }
+            }
+        }
+
+
+        $('#addrownew').on('click', function () {
+            addRow();
+        })
+
+        function addRow() {
+            newroww = `<div class="thisrow"><br><div class= "row" >` +
+                `<div class="col-3">` +
+                `<input type="text" class="form-control" placeholder="Enter Name"></div>` +
+                `<div class="col-3">` +
+                `<input type="text" class="form-control" placeholder="Enter Type"></div>` +
+                `<div class="col-3">` +
+                `<input type="text" class="form-control" placeholder="Enter Mobile No."></div>` +
+                `<div class="col-3">` +
+                `<button type="button" class="btn btn-success">Save</button>` +
+                `<button type="button" class="btn btn-danger float-right remove" id="removerow" > Delete </button>` +
+                `</div></div></div>`;
+            $('#addnewrow1').append(newroww);
+        }
+
+        $(document).on('click', '.remove', function () {
+            $(this).parents('.thisrow').remove();
+        });
+
+
+    </script>
+
+
+    <style>
+        .products-list .product-info {
+            margin-left: 20px !important;
+        }
+
+        .abt-slider .slick-slide {
+            border-top: dashed 1px #333 !important;
+            margin-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .card-header.scroll {
+            background-color: #e9564e;
+            color: white;
+        }
+        /*     .slick-list.draggable{
+            height:115px !important;
+        }*/
+    </style>
+
+    <script type="text/javascript">
+
+        $('.abt-slider').slick({
+            slidesToShow: 6,
+            slidesToScroll: 1,
+            dots: false,
+            arrows: false,
+            autoplay: true,
+            vertical: true,
+            verticalSwiping: true,
+            autoplaySpeed: 2500,
+        });
+
+
+        $('.calendar-dmpl tbody tr:nth-child(1) a').addClass('btn btn-info t-btn');
+        $('#All_DocPdfShowTab tbody tr:nth-child(1) , #ContentPlaceHolder1_PreviousDoc tbody tr:nth-child(1)').css("display", "none");
+
+
+    </script>
+
+    <script>
+        const AmagiLoader = {
+            __loader: null,
+            show: function () {
+
+                if (this.__loader == null) {
+                    var divContainer = document.createElement('div');
+                    divContainer.style.position = 'fixed';
+                    divContainer.style.left = '0';
+                    divContainer.style.top = '0';
+                    divContainer.style.width = '100%';
+                    divContainer.style.height = '100%';
+                    divContainer.style.zIndex = '9998';
+                    divContainer.style.backgroundColor = 'rgba(250, 250, 250, 0.50)';
+
+                    var div = document.createElement('div');
+                    div.style.position = 'absolute';
+                    div.style.left = '50%';
+                    div.style.top = '50%';
+                    div.style.zIndex = '9999';
+                    div.style.height = '64px';
+                    div.style.width = '64px';
+                    div.style.margin = '-76px 0 0 -76px';
+                    div.style.border = '8px solid #e1e1e1';
+                    div.style.borderRadius = '50%';
+                    div.style.borderTop = '8px solid #F36E21';
+                    div.animate([
+                        { transform: 'rotate(0deg)' },
+                        { transform: 'rotate(360deg)' }
+                    ], {
+                        duration: 2000,
+                        iterations: Infinity
+                    });
+                    divContainer.appendChild(div);
+                    this.__loader = divContainer
+                    document.body.appendChild(this.__loader);
+                }
+                this.__loader.style.display = "";
+            },
+            hide: function () {
+                if (this.__loader != null) {
+                    this.__loader.style.display = "none";
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
